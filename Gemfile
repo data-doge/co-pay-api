@@ -37,6 +37,7 @@ gem 'devise_token_auth'
 # gem 'capistrano-rails', group: :development
 
 gem 'faker'
+gem "factory_girl_rails", "~> 4.0"
 
 group :development, :test do
   gem 'byebug'
