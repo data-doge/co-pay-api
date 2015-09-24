@@ -6,4 +6,6 @@ Rails.application.routes.draw do
       get :my_memberships
     end
   end
+
+  resources :groups, only: [:show]
 end
