@@ -19,7 +19,7 @@ RSpec.describe PurchasesController, type: :controller do
       @payment_recipients = @group.users.last(3)
       @payment_recipient_ids = @payment_recipients.map { |u| u.id }
 
-      @purchase_params = attributes_for(:purchase)
+      @purchase_params = attributes_for(:purchase).merge(group_id: @group.id)
 
       post :create, {purchase: @purchase_params, user_ids: @payment_recipient_ids}
       @parsed_response = JSON.parse(response.body)
@@ -28,6 +28,10 @@ RSpec.describe PurchasesController, type: :controller do
 
     it "generates a purchase with specified params" do
       expect(@created_purchase).to be_truthy
+    end
+
+    it "the generated purchase belongs to the current_user" do
+      expect(@created_purchase.user_id).to eq(@current_user.id)      
     end
 
     it "returns the purchase as json" do
