@@ -9,5 +9,5 @@ Rails.application.routes.draw do
 
   resources :groups, only: [:show]
 
-  resources :purchases, only: [:index]
+  resources :purchases, only: [:index, :create]
 end

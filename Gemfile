@@ -19,13 +19,16 @@ gem 'rack-cors', :require => 'rack/cors'
 gem 'faker'
 gem "factory_girl_rails", "~> 4.0"
 
-gem 'rails_12factor'
 
 group :development, :test do
   gem 'byebug'
   gem 'rspec-rails', '~> 3.0'
   gem 'web-console', '~> 2.0'
   gem 'spring'
+end
+
+group :production do
+  gem 'rails_12factor'
 end
 
 ruby '2.2.0'
