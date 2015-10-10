@@ -42,5 +42,7 @@ module CoPayApi
           :methods => [:get, :post, :options, :delete, :put, :patch]
       end
     end
+
+    config.eager_load_paths += %W( #{config.root}/services )
   end
 end
