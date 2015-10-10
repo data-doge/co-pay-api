@@ -10,4 +10,6 @@ Rails.application.routes.draw do
   resources :groups, only: [:show]
 
   resources :purchases, only: [:index, :create]
+
+  resources :payments, only: [:index]
 end
