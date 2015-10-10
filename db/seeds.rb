@@ -34,5 +34,12 @@ users = [
 users.each { |user| group.users << User.create(name: user[:name], email: user[:email], password: "password") }
 puts "generated memberships for group"
 
-6.times { Purchase.create(description: Faker::Lorem.sentence, details: Faker::Lorem.paragraph, amount: rand(1.0..100.0), group: group, user: group.users.sample) }
+6.times do 
+  purchase = Purchase.create(description: Faker::Lorem.sentence, details: Faker::Lorem.paragraph, amount: rand(1.0..100.0), group: group, user: group.users.sample)
+  indiv_amount = purchase.amount / group.users.length
+  group.users.select { |user| user.id != purchase.user.id }.each do |user|
+    purchase.payments.create(user: user, amount: indiv_amount)
+  end
+end
+
 puts "purchases created"
