@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   mount_devise_token_auth_for 'User', at: 'auth'
 
-  resources :memberships, only: [] do
+  resources :memberships, only: [:index] do
     collection do
       get :my_memberships
     end
